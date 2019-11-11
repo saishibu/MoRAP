@@ -32,12 +32,13 @@ BOARD.reset()
 
 
 class mylora(LoRa):
-    def __init__(self, verbose=False):
+    def __init__(self, verbose=False,data):
         super(mylora, self).__init__(verbose)
         self.set_mode(MODE.SLEEP)
         self.set_dio_mapping([0] * 6)
+        self.data = data
 
-    def on_rx_done(self):
+    def on_rx_done(self,data):
         BOARD.led_on()
         #print("\nRxDone")
         self.clear_irq_flags(RxDone=1)
@@ -51,7 +52,7 @@ class mylora(LoRa):
             print("Received data request INF")
             time.sleep(2)
             print ("Send mens: DATA RASPBERRY PI")
-            self.write_payload([255, 255, 0, 0, 68, 65, 84, 65, 32, 82, 65, 83, 80, 66, 69, 82, 82, 89, 32, 80, 73, 0]) # Send DATA RASPBERRY PI
+            self.write_payload(data) # Send DATA RASPBERRY PI
             self.set_mode(MODE.TX)
         time.sleep(2)
         self.reset_ptr_rx()
@@ -88,8 +89,8 @@ class mylora(LoRa):
             while True:
                 pass;
             
-
-lora = mylora(verbose=False)
+data=[255,255,0,0,55,54,46,50,0]
+lora = mylora(verbose=False,data)
 #args = parser.parse_args(lora) # configs in LoRaArgumentParser.py
 
 #     Slow+long range  Bw = 125 kHz, Cr = 4/8, Sf = 4096chips/symbol, CRC on. 13 dBm
