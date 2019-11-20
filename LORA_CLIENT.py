@@ -18,7 +18,7 @@ def init(verbose=False):
 def on_rx_done(data):
      BOARD.led_on()
      #print("\nRxDone")
-     self.clear_irq_flags(RxDone=1)
+     LoRa.clear_irq_flags(RxDone=1)
      payload = self.read_payload(nocheck=True )# Receive INF
      print ("Receive: ")
      mens=bytes(payload).decode("utf-8",'ignore')
@@ -29,11 +29,11 @@ def on_rx_done(data):
         print("Received data request INF")
         time.sleep(2)
         print ("Send mens: DATA RASPBERRY PI")
-        write_payload([255, 255, 0, 0, 68, 65, 84, 65, 32, 82, 65, 83, 80, 66, 69, 82, 82, 89, 32, 80, 73, 0]) # Send DATA RASPBERRY PI
-        set_mode(MODE.TX)
+        LoRa.write_payload([255, 255, 0, 0, 68, 65, 84, 65, 32, 82, 65, 83, 80, 66, 69, 82, 82, 89, 32, 80, 73, 0]) # Send DATA RASPBERRY PI
+        LoRa.set_mode(MODE.TX)
      time.sleep(2)
-     reset_ptr_rx()
-     set_mode(MODE.RXCONT)
+     LoRa.reset_ptr_rx()
+     LoRa.set_mode(MODE.RXCONT)
 def on_tx_done(self):
      print("\nTxDone")
      print(self.get_irq_flags())
@@ -54,12 +54,12 @@ def on_fhss_change_channel(self):
      print("\non_FhssChangeChannel")
      print(self.get_irq_flags())
 
- def start(self):          
-     while True:
-            self.reset_ptr_rx()
-            self.set_mode(MODE.RXCONT) # Receiver mode
-            while True:
-                pass;
+ def start():
+    while True:
+        LoRa.reset_ptr_rx()
+        LoRa.set_mode(MODE.RXCONT) # Receiver mode
+        while True:
+            pass;
             
 
 #args = parser.parse_args(lora) # configs in LoRaArgumentParser.py
