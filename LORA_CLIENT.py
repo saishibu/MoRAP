@@ -62,7 +62,7 @@ def on_fhss_change_channel(self):
             
 
 #args = parser.parse_args(lora) # configs in LoRaArgumentParser.py
-
+LoRa=LoRa()
 #     Slow+long range  Bw = 125 kHz, Cr = 4/8, Sf = 4096chips/symbol, CRC on. 13 dBm
 LoRa.set_pa_config(pa_select=1, max_power=21, output_power=15)
 LoRa.set_bw(BW.BW125)
