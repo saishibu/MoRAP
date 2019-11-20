@@ -94,5 +94,5 @@ except KeyboardInterrupt:
 finally:
     sys.stdout.flush()
     print("Exit")
-    set_mode(MODE.SLEEP)
+    LoRa.set_mode(MODE.SLEEP)
 BOARD.teardown()
