@@ -64,16 +64,17 @@ def on_fhss_change_channel(self):
 #args = parser.parse_args(lora) # configs in LoRaArgumentParser.py
 LoRa=LoRa()
 #     Slow+long range  Bw = 125 kHz, Cr = 4/8, Sf = 4096chips/symbol, CRC on. 13 dBm
-LoRa.set_pa_config(pa_select=1, max_power=21, output_power=15)
-LoRa.set_bw(BW.BW125)
-LoRa.set_coding_rate(CODING_RATE.CR4_8)
-LoRa.set_spreading_factor(12)
-LoRa.set_rx_crc(True)
-LoRa.reset_ptr_rx()
-LoRa.set_mode(MODE.RXCONT)
+init(False)
+#LoRa.set_pa_config(pa_select=1, max_power=21, output_power=15)
+# LoRa.set_bw(BW.BW125)
+# LoRa.set_coding_rate(CODING_RATE.CR4_8)
+# LoRa.set_spreading_factor(12)
+# LoRa.set_rx_crc(True)
+# LoRa.reset_ptr_rx()
+# LoRa.set_mode(MODE.RXCONT)
 #lora.set_lna_gain(GAIN.G1)
 #lora.set_implicit_header_mode(False)
-LoRa.set_low_data_rate_optim(True)
+# LoRa.set_low_data_rate_optim(True)
 
 #  Medium Range  Defaults after init are 434.0MHz, Bw = 125 kHz, Cr = 4/5, Sf = 128chips/symbol, CRC on 13 dBm
 #lora.set_pa_config(pa_select=1)
