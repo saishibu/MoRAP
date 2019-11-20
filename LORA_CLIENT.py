@@ -19,7 +19,7 @@ def on_rx_done(data):
      BOARD.led_on()
      #print("\nRxDone")
      LoRa.clear_irq_flags(RxDone=1)
-     payload = self.read_payload(nocheck=True )# Receive INF
+     payload = LoRa.read_payload(nocheck=True )# Receive INF
      print ("Receive: ")
      mens=bytes(payload).decode("utf-8",'ignore')
      mens=mens[2:-1] #to discard \x00\x00 and \x00 at the end
