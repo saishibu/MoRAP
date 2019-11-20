@@ -53,12 +53,12 @@ def on_payload_crc_error(self):
 def on_fhss_change_channel(self):
      print("\non_FhssChangeChannel")
      print(self.get_irq_flags())
- def start():
-    while True:
-        LoRa.reset_ptr_rx()
-        LoRa.set_mode(MODE.RXCONT) # Receiver mode
-        while True:
-            pass;
+#  def start():
+#     while True:
+#         LoRa.reset_ptr_rx()
+#         LoRa.set_mode(MODE.RXCONT) # Receiver mode
+#         while True:
+#             pass;
             
 
 #args = parser.parse_args(lora) # configs in LoRaArgumentParser.py
@@ -69,6 +69,8 @@ LoRa.set_bw(BW.BW125)
 LoRa.set_coding_rate(CODING_RATE.CR4_8)
 LoRa.set_spreading_factor(12)
 LoRa.set_rx_crc(True)
+LoRa.reset_ptr_rx()
+LoRa.set_mode(MODE.RXCONT)
 #lora.set_lna_gain(GAIN.G1)
 #lora.set_implicit_header_mode(False)
 LoRa.set_low_data_rate_optim(True)
