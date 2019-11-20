@@ -13,8 +13,8 @@ BOARD.reset()
 
 def init(verbose=False):
     #super(mylora, self).__init__(verbose)
-    set_mode(MODE.SLEEP)
-    set_dio_mapping([0] * 6)
+    LoRa.set_mode(MODE.SLEEP)
+    LoRa.set_dio_mapping([0] * 6)
 def on_rx_done(data):
      BOARD.led_on()
      #print("\nRxDone")
