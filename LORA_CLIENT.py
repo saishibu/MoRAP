@@ -51,8 +51,8 @@ def on_payload_crc_error(self):
      print(self.get_irq_flags())
 
 def on_fhss_change_channel(self):
-    print("\non_FhssChangeChannel")
-    print(self.get_irq_flags())
+     print("\non_FhssChangeChannel")
+     print(self.get_irq_flags())
  def start():
     while True:
         LoRa.reset_ptr_rx()
