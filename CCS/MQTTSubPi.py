@@ -17,13 +17,13 @@ print("Process started at: " +str(mypid))
 client_uniq = "pubclient_"+str(mypid)
 mqttclient = paho.Client(client_uniq, False) #nocleanstart
 mqttclient.connect(broker, port, 60)
-mqttclient.subscribe("MORAP/#")
+mqttclient.subscribe("CCS/#")
 
 def test(client, userdata, message):
 	payload=message.payload.decode()
 	print(payload)
 
-mqttclient.message_callback_add("MORAP/test", test)
+mqttclient.message_callback_add("CCS/test", test)
 
 
 mqttclient.loop_forever()
