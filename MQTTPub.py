@@ -5,7 +5,7 @@ import json
 broker="34.93.40.246"
 port=1883
 topic="CCS\test"
-payload={'message':payload}
+payload={'message':"hello"}
 payload=json.dumps(payload)
 client = mqtt.Client()
 client.connect(broker,port,0)
