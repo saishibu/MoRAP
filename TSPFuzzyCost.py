@@ -10,8 +10,8 @@ def getCost(val1,val2,val3,val4):
 	flame=ctrl.Antecedent(np.arange(0,1,0.1),'flame')
 	pir=ctrl.Antecedent(np.arange(0,1,0.1),'pir')
 	distance=ctrl.Antecedent(np.arange(0,150,1),'distance')
-	temp=ctrl.Antecedent(np.arange(0,50,0.1),'temp')
-	cost=ctrl.Consequent(np.arange(0,5,0.1),'cost')
+	temp=ctrl.Antecedent(np.arange(0,50,1),'temp')
+	cost=ctrl.Consequent(np.arange(0,10,1),'cost')
 
 	flame['low']=fuzz.trapmf(flame.universe,[-0.2,-0.1,0,0.5])
 	flame['medium']=fuzz.trimf(flame.universe,[0,0.5,1])
@@ -29,11 +29,11 @@ def getCost(val1,val2,val3,val4):
 	temp['medium']=fuzz.trimf(temp.universe,[0,25,50])
 	temp['high']=fuzz.trapmf(temp.universe,[25,50,50.1,50.2])
 
-	cost['verylow']=fuzz.trapmf(cost.universe,[-0.2,-0.1,0,2])
-	cost['low']=fuzz.trimf(cost.universe,[0,2,4])
-	cost['medium']=fuzz.trimf(cost.universe,[2,4,6])
-	cost['high']=fuzz.trimf(cost.universe,[4,6,8])
-	cost['veryhigh']=fuzz.trapmf(cost.universe,[6,8,8.1,8.2])
+	cost['verylow']=fuzz.trapmf(cost.universe,[-0.2,-0.1,0,3])
+	cost['low']=fuzz.trimf(cost.universe,[0,3,6])
+	cost['medium']=fuzz.trimf(cost.universe,[3,6,8])
+	cost['high']=fuzz.trimf(cost.universe,[6,8,20])
+	cost['veryhigh']=fuzz.trapmf(cost.universe,[8,10,10.1,10.2])
 
 	rule1 = ctrl.Rule(flame['high'] & distance['high'] & pir['high'] & temp['high'] , cost['veryhigh'])
 	rule2 = ctrl.Rule(flame['high'] & distance['high'] & pir['high'] & temp['medium'] , cost['medium'])
