@@ -12,9 +12,6 @@ def getCost(val1,val2,val3):
 	condition=ctrl.Antecedent(np.arange(0,100,1),'condition')
 	cost=ctrl.Consequent(np.arange(0,10,1),'cost')
 
-	flame['low']=fuzz.trapmf(flame.universe,[-0.2,-0.1,0,0.5])
-	flame['medium']=fuzz.trimf(flame.universe,[0,0.5,1])
-	flame['high']=fuzz.trapmf(flame.universe,[0.5,1,1.1,1.2])
 
 	difficulty['low']=fuzz.trapmf(difficulty.universe,[-2.2,-1.1,0,50])
 	difficulty['medium']=fuzz.trimf(difficulty.universe,[0,50,100])
