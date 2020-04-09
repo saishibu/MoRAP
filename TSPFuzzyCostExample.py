@@ -1,7 +1,7 @@
 import TSPFuzzyCost as fuzzy
 #Install SKFUZZY --> pip3 install scikit-fuzzy
 
-flame=0.3
+flame=3
 pir=1
 distance=50
 temp=30
