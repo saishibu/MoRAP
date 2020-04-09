@@ -125,5 +125,5 @@ def getCost(val1,val2,val3,val4):
 	cost.input['pir'] = val2
 	cost.input['temp'] = val4
 	cost.compute()
-	return(round(cost.output['cost'],3))
+	return(round(cost.output['cost']))
 
