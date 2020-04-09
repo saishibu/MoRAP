@@ -2,31 +2,31 @@ import numpy as np
 import skfuzzy as fuzz
 from skfuzzy import control as ctrl
 
-def getCost(val1,val2,val3,val4):
+def getCost(val1,val2,val3):
 # 	Flame sensor- 0 or 1
 # 	difficulty sensor - 0 or 1
 # 	Distance - 0 to 150cm
 # 	conditionerature - 0 to 50degree
-	difficulty=ctrl.Antecedent(np.arange(0,1,0.1),'difficulty')
-	distance=ctrl.Antecedent(np.arange(0,150,1),'distance')
-	condition=ctrl.Antecedent(np.arange(0,50,1),'condition')
+	difficulty=ctrl.Antecedent(np.arange(0,100,1),'difficulty')
+	distance=ctrl.Antecedent(np.arange(0,500,10),'distance')
+	condition=ctrl.Antecedent(np.arange(0,100,1),'condition')
 	cost=ctrl.Consequent(np.arange(0,10,1),'cost')
 
 	flame['low']=fuzz.trapmf(flame.universe,[-0.2,-0.1,0,0.5])
 	flame['medium']=fuzz.trimf(flame.universe,[0,0.5,1])
 	flame['high']=fuzz.trapmf(flame.universe,[0.5,1,1.1,1.2])
 
-	difficulty['low']=fuzz.trapmf(difficulty.universe,[-2.2,-1.1,0,0.5])
-	difficulty['medium']=fuzz.trimf(difficulty.universe,[0,0.5,1])
-	difficulty['high']=fuzz.trapmf(difficulty.universe,[0.5,1,1.1,1.2])
+	difficulty['low']=fuzz.trapmf(difficulty.universe,[-2.2,-1.1,0,50])
+	difficulty['medium']=fuzz.trimf(difficulty.universe,[0,50,100])
+	difficulty['high']=fuzz.trapmf(difficulty.universe,[50,100,100.1,100.2])
 
-	distance['low']=fuzz.trapmf(distance.universe,[-0.9,-0.8,0,75])
-	distance['medium']=fuzz.trimf(distance.universe,[0,75,150])
-	distance['high']=fuzz.trapmf(distance.universe,[75,150,150.1,150.2])
+	distance['low']=fuzz.trapmf(distance.universe,[-0.9,-0.8,0,250])
+	distance['medium']=fuzz.trimf(distance.universe,[0,250,500])
+	distance['high']=fuzz.trapmf(distance.universe,[250,500,500.1,500.2])
 
-	condition['low']=fuzz.trapmf(condition.universe,[-2,-1,0,25])
-	condition['medium']=fuzz.trimf(condition.universe,[0,25,50])
-	condition['high']=fuzz.trapmf(condition.universe,[25,50,50.1,50.2])
+	condition['low']=fuzz.trapmf(condition.universe,[-2,-1,0,50])
+	condition['medium']=fuzz.trimf(condition.universe,[0,50,100])
+	condition['high']=fuzz.trapmf(condition.universe,[20,100,100.1,100.2])
 
 	cost['low']=fuzz.trapmf(cost.universe,[-0.2,-0.1,0,3])
 	cost['medium']=fuzz.trimf(cost.universe,[3,5,7])
@@ -63,10 +63,8 @@ def getCost(val1,val2,val3,val4):
 	
 	cost_ctrl = ctrl.ControlSystem([rule1, rule2, rule3, rule4, rule5,rule6,rule7,rule8,rule9,rule10,rule11,rule12,rule13,rule14,rule15,rule16,rule17,rule18,rule19,rule20,rule21,rule22,rule23,rule24,rule25,rule26,rule27])
 	cost = ctrl.ControlSystemSimulation(cost_ctrl)
-	cost.input['flame'] = val1
-	cost.input['distance'] = val3
+	cost.input['distance'] = val1
 	cost.input['difficulty'] = val2
-	cost.input['condition'] = val4
+	cost.input['condition'] = val3
 	cost.compute()
 	return(round(cost.output['cost']))
-
