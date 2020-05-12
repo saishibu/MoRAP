@@ -63,3 +63,6 @@ for i in range(number_of_points-1):
 #client_write_start_time = time.perf_counter()
 
 client.write_points(data, database='GCS_Database', time_precision='ms', batch_size=20, protocol='json')
+
+
+
